@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1569506764 source:c:\users\bress\documents\codeblocks projects\sorting\sorting.c
+	"stdlib.h"
+	"stdio.h"
+	"sorting.h"
+	"time.h"
+
+1569506764 c:\users\bress\documents\codeblocks projects\sorting\sorting.h
+
+1569506789 source:c:\users\bress\documents\codeblocks projects\sorting\main.c
+	"stdio.h"
+	"stdlib.h"
+	"sorting.h"
+	"time.h"
+
