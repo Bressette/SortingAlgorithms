@@ -10,8 +10,14 @@ int main()
     int size = 10;
 
     fillArray(array, size);
+    int j = 10;
     printArray(array, size);
     bubbleSort(array, size);
+    printArray(array, size);
+
+    fillArray(array, size);
+    printArray(array, size);
+    mergeSort(array, 0, size);
     printArray(array, size);
 
     return 0;
