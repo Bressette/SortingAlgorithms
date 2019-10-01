@@ -116,43 +116,72 @@ void mergeSort(int *a,int s,int e)
 
 }
 
+/*Function that rearranges elements in an integer array around
+ *a pivot point that is selected as the last element in the array
+*/
 int partition(int *a, int s, int e)
 {
+    //holds the value of the pivot element
     int pivot = a[e];
-    int i = (s-1);
+    //index of smaller element
+    int i = s-1;
+    //temp variable used for swaps
     int temp;
 
+    //loop that rearranges elements around a pivot point
     for(int j = s; j < e; j++)
     {
+        //if the current element of the array is less than the pivot swap with element that is greater than pivot
         if(a[j] < pivot)
         {
+            //increments i so that it is the proper position of an element that can be swapped
             i++;
+
+            //swaps the smaller element in j with the larger element in i
             temp = a[j];
             a[j] = a[i];
             a[i] = temp;
         }
     }
 
+    //holds the index of the pivot which is i+1 as the smaller elements end at index i
     int pivotIndex = (i+1);
+
+    //swaps the pivot element with the larger element in i+1
     temp = a[e];
     a[e] = a[i+1];
     a[i+1] = temp;
+
+    //returns the pivotIndex to be used with recursive calls in quicksort
     return pivotIndex;
 
 
 }
 
+/*Implementation of quick sort if the starting index is smaller than the ending index
+ *the array is partitioned so that the elements are arranged around a pivot point and
+ *returns the index of the pivot point. Then quickSort is called first for the array from
+ *element s(the starting index) to pivotIndex-1. This call sorts the elements that are lower
+ *than the first pivot point. A second call is made to quickSort from element pivotIndex+1 to
+ *e and this sorts the elements in the array that are after the first pivot point.
+ *The recursive calls continue and pivot points are selected until the array is sorted
+*/
 void quickSort(int *array, int s, int e)
 {
+    //variable that holds the index of the last pivot element
     int pivotIndex;
+
+    //base case if the starting index becomes equal to or greater than the ending index stops recursive calls
     if(s < e)
     {
+        //partitions the array around a pivot and returns the pivot index into pivotIndex
         pivotIndex = partition(array, s, e);
+
+        //sorts the array recursively from the start of the array to the element before the pivot
         quickSort(array, s, pivotIndex-1);
+        //sorts the array recursively from the element after the pivot to the end of the array
         quickSort(array,pivotIndex+1, e);
     }
-
-
 }
 
 

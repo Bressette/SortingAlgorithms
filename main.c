@@ -27,9 +27,11 @@ int main()
     mergeSort(array, 0, size-1);
     printArray(array, size);
 
+    //fills the array with new elements and prints the result
     fillArray(array, size);
     printArray(array, size);
 
+    //sorts the array and prints the sorted array
     quickSort(array, 0, size-1);
     printArray(array, size);
 
