@@ -46,45 +46,45 @@ void printArray(int *array, int size)
 
 
 //merges the subarrays from mergeSort()
-void merge(int *a,int s,int e)
+void merge(int *array,int start,int end)
 {
     //calculates the middle index in the array
-    int mid = (s+e)/2;
+    int mid = (start+end)/2;
 
     //iterators
-    int i = s;
+    int i = start;
     int j = mid+1;
-    int k = s;
+    int k = start;
 
     //temp array for storing sorted array
     int temp[100];
 
     //compares the values of the 2 subarrays and sorts them into a single array
-    while(i<=mid && j<=e){
-        if(a[i] < a[j]){
-            temp[k++] = a[i++];
+    while(i<=mid && j<=end){
+        if(array[i] < array[j]){
+            temp[k++] = array[i++];
         }
         else{
-            temp[k++] = a[j++];
+            temp[k++] = array[j++];
         }
     }
 
     //fill remaining values if first subarray was not fully used
     while(i<=mid)
     {
-        temp[k++] = a[i++];
+        temp[k++] = array[i++];
     }
 
     //fill remaining values if second subarray was not fully used
-    while(j<=e)
+    while(j<=end)
     {
-        temp[k++]  = a[j++];
+        temp[k++]  = array[j++];
     }
 
     //transfers sorted array back into the result array
-    for(int i=s;i<=e;i++)
+    for(int i=start;i<=end;i++)
     {
-        a[i] = temp[i];
+        array[i] = temp[i];
     }
 
 
@@ -95,52 +95,52 @@ void merge(int *a,int s,int e)
  *utilizes a merge function to merge all of the subarrays to sort
  *the array. The running time is O(n*logn)
 */
-//s is the starting index and e is the final index for input e should be size-1
-void mergeSort(int *a,int s,int e)
+//start is the starting index and end is the final index for input end should be size-1
+void mergeSort(int *array,int start,int end)
 {
 //base case when array size is 1 recursive calls exit
-    if(s>=e)
+    if(start>=end)
     {
         return;
     }
 
 //calculates the middle index of the array
-    int mid = (s+e)/2;
+    int mid = (start+end)/2;
 
 //splits array in half until size is 1
-    mergeSort(a,s,mid);
-    mergeSort(a,mid+1,e);
+    mergeSort(array,start,mid);
+    mergeSort(array,mid+1,end);
 
 //merges every subarray into one array
-    merge(a,s,e);
+    merge(array,start,end);
 
 }
 
 /*Function that rearranges elements in an integer array around
  *a pivot point that is selected as the last element in the array
 */
-int partition(int *a, int s, int e)
+int partition(int *array, int start, int end)
 {
     //holds the value of the pivot element
-    int pivot = a[e];
+    int pivot = array[end];
     //index of smaller element
-    int i = s-1;
+    int i = start-1;
     //temp variable used for swaps
     int temp;
 
     //loop that rearranges elements around a pivot point
-    for(int j = s; j < e; j++)
+    for(int j = start; j < end; j++)
     {
         //if the current element of the array is less than the pivot swap with element that is greater than pivot
-        if(a[j] < pivot)
+        if(array[j] < pivot)
         {
             //increments i so that it is the proper position of an element that can be swapped
             i++;
 
             //swaps the smaller element in j with the larger element in i
-            temp = a[j];
-            a[j] = a[i];
-            a[i] = temp;
+            temp = array[j];
+            array[j] = array[i];
+            array[i] = temp;
         }
     }
 
@@ -148,9 +148,9 @@ int partition(int *a, int s, int e)
     int pivotIndex = (i+1);
 
     //swaps the pivot element with the larger element in i+1
-    temp = a[e];
-    a[e] = a[i+1];
-    a[i+1] = temp;
+    temp = array[end];
+    array[end] = array[i+1];
+    array[i+1] = temp;
 
     //returns the pivotIndex to be used with recursive calls in quicksort
     return pivotIndex;
@@ -166,21 +166,21 @@ int partition(int *a, int s, int e)
  *e and this sorts the elements in the array that are after the first pivot point.
  *The recursive calls continue and pivot points are selected until the array is sorted
 */
-void quickSort(int *array, int s, int e)
+void quickSort(int *array, int start, int end)
 {
     //variable that holds the index of the last pivot element
     int pivotIndex;
 
     //base case if the starting index becomes equal to or greater than the ending index stops recursive calls
-    if(s < e)
+    if(start < end)
     {
         //partitions the array around a pivot and returns the pivot index into pivotIndex
-        pivotIndex = partition(array, s, e);
+        pivotIndex = partition(array, start, end);
 
         //sorts the array recursively from the start of the array to the element before the pivot
-        quickSort(array, s, pivotIndex-1);
+        quickSort(array, start, pivotIndex-1);
         //sorts the array recursively from the element after the pivot to the end of the array
-        quickSort(array,pivotIndex+1, e);
+        quickSort(array,pivotIndex+1, end);
     }
 }
 

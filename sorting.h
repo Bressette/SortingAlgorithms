@@ -2,11 +2,12 @@
 #ifndef SORTING_H
 
 void bubbleSort(int *array, int size);
-void merge_sort(int i, int j, int a[], int aux[]);
-void quickSort(int *array, int s, int e);
+void mergeSort(int *array,int start,int end);
+void quickSort(int *array, int start, int end);
 void fillArray(int *array, int size);
 void printArray(int *array, int size);
-void merge(int *a,int s,int e);
-int partition(int *a, int s, int e);
+void merge(int *array,int start,int end);
+int partition(int *array, int start, int end);
+void insertionSort(int *array, int start, int end);
 
 #endif // SORTING_H
