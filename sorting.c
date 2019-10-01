@@ -49,7 +49,7 @@ void printArray(int *array, int size)
 void merge(int *a,int s,int e)
 {
     //calculates the middle index in the array
-    int mid = s + (e-s)/2;
+    int mid = (s+e)/2;
 
     //iterators
     int i = s;
@@ -82,7 +82,8 @@ void merge(int *a,int s,int e)
     }
 
     //transfers sorted array back into the result array
-    for(int i=s;i<=e;i++){
+    for(int i=s;i<=e;i++)
+    {
         a[i] = temp[i];
     }
 
@@ -94,7 +95,7 @@ void merge(int *a,int s,int e)
  *utilizes a merge function to merge all of the subarrays to sort
  *the array. The running time is O(n*logn)
 */
-//s is the starting index and e is the final index
+//s is the starting index and e is the final index for input e should be size-1
 void mergeSort(int *a,int s,int e)
 {
 //base case when array size is 1 recursive calls exit
@@ -104,7 +105,7 @@ void mergeSort(int *a,int s,int e)
     }
 
 //calculates the middle index of the array
-    int mid = s + (e-s)/2;
+    int mid = (s+e)/2;
 
 //splits array in half until size is 1
     mergeSort(a,s,mid);
@@ -114,3 +115,44 @@ void mergeSort(int *a,int s,int e)
     merge(a,s,e);
 
 }
+
+int partition(int *a, int s, int e)
+{
+    int pivot = a[e];
+    int i = (s-1);
+    int temp;
+
+    for(int j = s; j < e; j++)
+    {
+        if(a[j] < pivot)
+        {
+            i++;
+            temp = a[j];
+            a[j] = a[i];
+            a[i] = temp;
+        }
+    }
+
+    int pivotIndex = (i+1);
+    temp = a[e];
+    a[e] = a[i+1];
+    a[i+1] = temp;
+    return pivotIndex;
+
+
+}
+
+void quickSort(int *array, int s, int e)
+{
+    int pivotIndex;
+    if(s < e)
+    {
+        pivotIndex = partition(array, s, e);
+        quickSort(array, s, pivotIndex-1);
+        quickSort(array,pivotIndex+1, e);
+    }
+
+
+}
+
+

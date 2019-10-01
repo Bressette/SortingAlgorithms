@@ -24,7 +24,13 @@ int main()
     printArray(array, size);
 
     //sorts the array and prints the result
-    mergeSort(array, 0, size);
+    mergeSort(array, 0, size-1);
+    printArray(array, size);
+
+    fillArray(array, size);
+    printArray(array, size);
+
+    quickSort(array, 0, size-1);
     printArray(array, size);
 
     return 0;
