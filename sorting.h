@@ -8,6 +8,6 @@ void fillArray(int *array, int size);
 void printArray(int *array, int size);
 void merge(int *array,int start,int end);
 int partition(int *array, int start, int end);
-void insertionSort(int *array, int start, int end);
+void insertionSortIterative(int *array, int size);
 
 #endif // SORTING_H

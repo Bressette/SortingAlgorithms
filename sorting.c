@@ -184,4 +184,31 @@ void quickSort(int *array, int start, int end)
     }
 }
 
+/*Implementation of insert sort an in-place sorting algorithm with an average time complexity of O(n^2)
+  Starting from the left of the array elements are compared to elements to the left of them and the element
+  is inserted into the correct position in the array
+*/
+void insertionSortIterative(int *array, int size)
+{
+    int i, key, j;
+
+    //for loop that iterates i that signifies which index of the
+    for(i = 1; i < size; i++)
+    {
+        //holds the value of the element that will be inserted that is compared to everything else
+        key = array[i];
+        //sets the index of elements to be compared to be less than the element that will be compared
+        j= i -1;
+
+        //move elements greater than the key one position ahead of their current position
+        while(j >= 0 && array[j] > key)
+        {
+            array[j+1] = array[j];
+            j = j-1;
+        }
+        //inserts the key into the correct position of the array
+        array[j+1] = key;
+    }
+}
+
 
