@@ -43,10 +43,12 @@ int main()
     insertionSortIterative(array, size);
     printArray(array, size);
 
-    int newArray[10];
-    fillArray(newArray, size);
 
-    heapSort(newArray, size);
+    fillArray(array, size);
+    printArray(array, size);
+
+    heapSort(array, size);
+    printArray(array, size);
 
     return 0;
 }

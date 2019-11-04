@@ -214,14 +214,14 @@ void insertionSortIterative(int *array, int size)
 void heapify(int *array, int size, int rootIndex)
 {
     int largest = rootIndex;
-    int left = largest*2 + 1;
-    int right = largest*2 + 2;
+    int left = rootIndex*2 + 1;
+    int right = rootIndex*2 + 2;
     if(left < size && array[left] > array[largest])
     {
         largest = left;
     }
 
-    else if(right < size && array[right] > array[largest])
+    if(right < size && array[right] > array[largest])
     {
         largest = right;
     }
@@ -244,8 +244,17 @@ void heapify(int *array, int size, int rootIndex)
 //Repeat while size of heap is greater than one
 void heapSort(int *array, int size)
 {
-    heapify(array, size, 0);
-    printArray(array, size);
+    for(int i = size / 2 - 1; i >= 0; i--)
+        heapify(array, size, i);
+
+    for(int i = size - 1; i >= 0; i--)
+    {
+        int temp = array[0];
+        array[0] = array[i];
+        array[i] = temp;
+
+        heapify(array, i, 0);
+    }
 }
 
 
