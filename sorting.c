@@ -211,4 +211,41 @@ void insertionSortIterative(int *array, int size)
     }
 }
 
+void heapify(int *array, int size, int rootIndex)
+{
+    int largest = rootIndex;
+    int left = largest*2 + 1;
+    int right = largest*2 + 2;
+    if(left < size && array[left] > array[largest])
+    {
+        largest = left;
+    }
+
+    else if(right < size && array[right] > array[largest])
+    {
+        largest = right;
+    }
+
+    if(largest != rootIndex)
+    {
+        int temp = array[largest];
+        array[largest] = array[rootIndex];
+        array[rootIndex] = temp;
+        heapify(array, size, largest);
+    }
+
+
+}
+
+
+//Build a max heap from current array
+//Replace the root with the last item in the array
+//Decrease the size of the heap by one
+//Repeat while size of heap is greater than one
+void heapSort(int *array, int size)
+{
+    heapify(array, size, 0);
+    printArray(array, size);
+}
+
 
