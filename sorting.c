@@ -37,6 +37,7 @@ void fillArray(int *array, int size)
 //prints the array that is passed in with the specified size
 void printArray(int *array, int size)
 {
+    printf("\n");
     for(int i = 0; i < size; i++)
     {
         printf("%d ", array[i]);
@@ -257,4 +258,26 @@ void heapSort(int *array, int size)
     }
 }
 
+void selectionSort(int *arr, int sizeOfArray)
+{
+    int minIndex, temp;
 
+    for(int i = 0; i < sizeOfArray-1; i++)
+    {
+        minIndex = i;
+        for(int j = i + 1; j < sizeOfArray; j++)
+        {
+            if(arr[j] < arr[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+
+        if(minIndex != i)
+        {
+            temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
