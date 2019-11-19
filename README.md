@@ -1,2 +1,2 @@
 # sortingAlgorithms
-Implementation of sorting algorithms in C: bubbleSort, quickSort, mergeSort, insertionSort, heapSort
+Implementation of sorting algorithms in C: bubble sort, quick sort, merge sort, insertion sort, heap sort, selection sort
